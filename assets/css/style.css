@@ -13,12 +13,10 @@ body {
 
 header {
 	background-image: url("../img/wall.png");
-	background-size: contain;
 }
 
 main {
 	background-image: url("../img/cork.png");
-	background-size: contain;
 }
 
 img {
@@ -44,8 +42,8 @@ img {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding: 2rem;
-	gap: 1rem;
+	padding: 2.5rem 0;
+	gap: 1.5rem;
 }
 
 /* Card */
