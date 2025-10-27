@@ -33,7 +33,7 @@ img {
 /* Header */
 .title {
 	text-align: center;
-	font-size: 84px;
+	font-size: 64px;
 	padding: 1rem 0;
 }
 
@@ -82,4 +82,10 @@ img {
 	font-family: "Sometype Mono", monospace;
 	font-size: 1rem;
 	color: gray;
+}
+
+@media screen and (width > 440px) {
+	.title {
+		font-size: 84px;
+	}
 }
