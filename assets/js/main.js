@@ -28,7 +28,7 @@ const buildElement = (tagName, className, text) => {
  * @param {object} card
  */
 const showCard = (element, card) => {
-	const { id, title, date, url } = card;
+	const { _, title, date, url } = card;
 
 	const cardElement = buildElement("div", "card");
 
@@ -54,19 +54,26 @@ const showCard = (element, card) => {
 	element.appendChild(cardElement);
 };
 
-/* Without async/await
-const fetchCards = (endpoint) => {
+/**
+ * **fetchCards**
+ * Receives an endpoint URL and an element to append
+ * the cards fetched from the endpoint.
+ * @param {string} endpoint
+ * @param {HTMLElement} element
+ */
+/*
+const fetchCardsOld = (endpoint, element) => {
 	fetch(endpoint)
 		.then((response) => response.json())
 		.then((result) => {
 			result.forEach((card) => {
-				console.log(card);
-				showCard(boardElement, card);
+				showCard(element, card);
 			});
 		})
 		.catch((error) => console.error(error));
 };
 */
+
 /**
  * **fetchCards**
  * Receives an endpoint URL and an element to append
@@ -79,7 +86,6 @@ const fetchCards = async (endpoint, element) => {
 	const response = await fetch(endpoint);
 	const cards = await response.json();
 	cards.forEach((card) => {
-		console.log(card);
 		showCard(element, card);
 	});
 };
