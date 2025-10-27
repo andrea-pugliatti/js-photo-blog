@@ -42,14 +42,8 @@ const showCard = (element, card) => {
 	element.appendChild(cardElement);
 };
 
+/*
 const fetchCards = (endpoint) => {
-	// let cards = await fetch(endpoint).then((response) => {
-	// 	response.text();
-	// });
-	// cards.forEach((card) => {
-	// 	showCard(boardElement, card);
-	// });
-
 	fetch(endpoint)
 		.then((response) => response.json())
 		.then((result) => {
@@ -59,6 +53,17 @@ const fetchCards = (endpoint) => {
 			});
 		})
 		.catch((error) => console.error(error));
+};
+
+*/
+// With async/await
+const fetchCards = async (endpoint) => {
+	const response = await fetch(endpoint);
+	const cards = await response.json();
+	cards.forEach((card) => {
+		console.log(card);
+		showCard(boardElement, card);
+	});
 };
 
 fetchCards(endpoint);
