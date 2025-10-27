@@ -1,50 +1,60 @@
-const endpoint = "https://lanciweb.github.io/demo/api/pictures/";
+/**
+ * **buildElement**
+ * Receives the tagName of the element to create,
+ * the className to attach to the element and text
+ * that is treated as textContent for every tag except
+ * for img tags: in this case it's an url
+ * @param {string} tagName
+ * @param {string} className
+ * @param {string} text
+ * @returns {HTMLElement}
+ */
+const buildElement = (tagName, className, text) => {
+	const element = document.createElement(tagName);
+	element.className += className;
+	if (tagName === "img") {
+		element.src = text;
+	} else if (text) {
+		element.textContent = text;
+	}
+	return element;
+};
 
-// Select row
-const boardElement = document.getElementById("board");
-
-// Show Card
+/**
+ * **showCard**
+ * Receives an element and a card object. It builds
+ * the card and appends it to the element.
+ * @param {HTMLElement} element
+ * @param {object} card
+ */
 const showCard = (element, card) => {
 	const { id, title, date, url } = card;
 
-	const cardElement = document.createElement("div");
-	cardElement.className += "card";
+	const cardElement = buildElement("div", "card");
 
-	const pinElement = document.createElement("div");
-	pinElement.className += "pin";
-	const pinImage = document.createElement("img");
-	pinImage.src = "./assets/img/pin.svg";
+	const pinElement = buildElement("div", "pin");
+	const pinImage = buildElement("img", "", "./assets/img/pin.svg");
 	pinElement.appendChild(pinImage);
 	cardElement.appendChild(pinElement);
 
-	const imageContainerElement = document.createElement("div");
-	imageContainerElement.className += "image-container";
-	const imageElement = document.createElement("img");
-	imageElement.src = url;
+	const imageContainerElement = buildElement("div", "image-container");
+	const imageElement = buildElement("img", "", url);
 	imageContainerElement.appendChild(imageElement);
 	cardElement.appendChild(imageContainerElement);
 
-	const cardFooterElement = document.createElement("div");
-	cardFooterElement.className += "card-footer";
-	// const idElement = document.createElement("div");
-	// idElement.className += "card-id";
-	// idElement.textContent = id;
+	const cardFooterElement = buildElement("div", "card-footer");
+	// const idElement = buildElement("div", "card-id", id);
 	// cardFooterElement.appendChild(idElement);
-	const dateElement = document.createElement("div");
-	dateElement.className += "card-date";
-	dateElement.textContent = date;
+	const dateElement = buildElement("div", "card-date", date);
 	cardFooterElement.appendChild(dateElement);
-	const titleElement = document.createElement("div");
-	titleElement.className += "card-title";
-	titleElement.textContent = title;
+	const titleElement = buildElement("div", "card-title", title);
 	cardFooterElement.appendChild(titleElement);
 	cardElement.appendChild(cardFooterElement);
 
 	element.appendChild(cardElement);
 };
 
-/*
-//Without async/await
+/* Without async/await
 const fetchCards = (endpoint) => {
 	fetch(endpoint)
 		.then((response) => response.json())
@@ -56,16 +66,29 @@ const fetchCards = (endpoint) => {
 		})
 		.catch((error) => console.error(error));
 };
-
 */
-// With async/await
-const fetchCards = async (endpoint) => {
+/**
+ * **fetchCards**
+ * Receives an endpoint URL and an element to append
+ * the cards fetched from the endpoint.
+ * This version uses async/await
+ * @param {string} endpoint
+ * @param {HTMLElement} element
+ */
+const fetchCards = async (endpoint, element) => {
 	const response = await fetch(endpoint);
 	const cards = await response.json();
 	cards.forEach((card) => {
 		console.log(card);
-		showCard(boardElement, card);
+		showCard(element, card);
 	});
 };
 
-fetchCards(endpoint);
+// URL Endpoint
+const endpoint = "https://lanciweb.github.io/demo/api/pictures/";
+
+// Select row element
+const boardElement = document.getElementById("board");
+
+// Fetch Cards and print them
+fetchCards(endpoint, boardElement);
