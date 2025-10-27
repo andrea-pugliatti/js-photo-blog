@@ -14,6 +14,7 @@ const showCard = (element, card) => {
 	pinElement.className += "pin";
 	const pinImage = document.createElement("img");
 	pinImage.src = "./assets/img/pin.svg";
+	pinElement.appendChild(pinImage);
 	cardElement.appendChild(pinElement);
 
 	const imageContainerElement = document.createElement("div");
@@ -25,24 +26,25 @@ const showCard = (element, card) => {
 
 	const cardFooterElement = document.createElement("div");
 	cardFooterElement.className += "card-footer";
-	const idElement = document.createElement("div");
-	idElement.className += "card-id";
-	idElement.textContent = id;
-	cardFooterElement.appendChild(idElement);
-	const titleElement = document.createElement("div");
-	titleElement.className += "card-title";
-	titleElement.textContent = title;
-	cardFooterElement.appendChild(titleElement);
+	// const idElement = document.createElement("div");
+	// idElement.className += "card-id";
+	// idElement.textContent = id;
+	// cardFooterElement.appendChild(idElement);
 	const dateElement = document.createElement("div");
 	dateElement.className += "card-date";
 	dateElement.textContent = date;
 	cardFooterElement.appendChild(dateElement);
+	const titleElement = document.createElement("div");
+	titleElement.className += "card-title";
+	titleElement.textContent = title;
+	cardFooterElement.appendChild(titleElement);
 	cardElement.appendChild(cardFooterElement);
 
 	element.appendChild(cardElement);
 };
 
 /*
+//Without async/await
 const fetchCards = (endpoint) => {
 	fetch(endpoint)
 		.then((response) => response.json())
