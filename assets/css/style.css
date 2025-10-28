@@ -45,6 +45,27 @@ img {
 	padding: 2.5rem 0;
 	gap: 1.5rem;
 }
+.modal {
+	background-color: rgba(0 0 0 / 80%);
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	position: absolute;
+	display: flex;
+	align-items: center;
+
+	.close-modal {
+		display: block;
+		margin: 0 auto;
+		font-size: 18px;
+		padding: 0.5rem 1rem;
+	}
+
+	img {
+		margin-top: 2rem;
+	}
+}
 
 /* Card */
 .card-button {
