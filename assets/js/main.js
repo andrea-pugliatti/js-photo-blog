@@ -20,6 +20,10 @@ const buildElement = (tagName, className, text) => {
 	return element;
 };
 
+/**
+ * **toggleOverlay**
+ * Toggles the class "d-none" on the overlay element.
+ */
 const toggleOverlay = () => {
 	const overlayElement = document.getElementById("overlay");
 	overlayElement.classList.toggle("d-none");
@@ -36,7 +40,11 @@ const showCard = (element, card) => {
 	const { _, title, date, url } = card;
 
 	const buttonElement = buildElement("button", "card-button");
-	buttonElement.addEventListener("click", toggleOverlay);
+	buttonElement.addEventListener("click", () => {
+		const imgElement = document.querySelector("#overlay img");
+		imgElement.src = url;
+		toggleOverlay();
+	});
 
 	const cardElement = buildElement("div", "card");
 
@@ -51,8 +59,6 @@ const showCard = (element, card) => {
 	cardElement.appendChild(imageContainerElement);
 
 	const cardFooterElement = buildElement("div", "card-footer");
-	// const idElement = buildElement("div", "card-id", id);
-	// cardFooterElement.appendChild(idElement);
 	const dateElement = buildElement("div", "card-date", date);
 	cardFooterElement.appendChild(dateElement);
 	const titleElement = buildElement("div", "card-title", title);
