@@ -46,7 +46,7 @@ img {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding: 2.5rem 0;
+	padding: 2.5rem 0 4rem 0;
 	gap: 1.5rem;
 }
 
@@ -60,6 +60,7 @@ img {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	z-index: 2;
 
 	.close-modal {
 		display: block;
@@ -80,8 +81,22 @@ img {
 	font-size: inherit;
 	background-color: white;
 	padding: 1rem;
-	box-shadow: 2px 2px 3px 0px rgb(33, 33, 33);
+	box-shadow: 2px 2px 4px 0px rgb(0 0 0 / 80%);
 	position: relative;
+	transition:
+		transform 0.1s ease-in,
+		box-shadow 0.1s ease-in;
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: 2px 2px 10px 0px rgb(0 0 0 / 50%);
+		transform: rotate(10deg) scale(1.1, 1.1);
+		z-index: 1;
+	}
+
+	&:hover .pin {
+		display: none;
+	}
 }
 
 .pin {
@@ -100,6 +115,7 @@ img {
 .card-footer {
 	width: 300px;
 	padding: 1rem 0 0.5rem 0;
+	text-align: start;
 }
 
 .card-title {
