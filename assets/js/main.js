@@ -20,6 +20,11 @@ const buildElement = (tagName, className, text) => {
 	return element;
 };
 
+const toggleOverlay = () => {
+	const overlayElement = document.getElementById("overlay");
+	overlayElement.classList.toggle("d-none");
+};
+
 /**
  * **showCard**
  * Receives an element and a card object. It builds
@@ -31,6 +36,7 @@ const showCard = (element, card) => {
 	const { _, title, date, url } = card;
 
 	const buttonElement = buildElement("button", "card-button");
+	buttonElement.addEventListener("click", toggleOverlay);
 
 	const cardElement = buildElement("div", "card");
 
@@ -99,6 +105,9 @@ const endpoint = "https://lanciweb.github.io/demo/api/pictures/";
 
 // Select row element
 const boardElement = document.getElementById("board");
+
+const closeOverlayElement = document.querySelector("button.close-modal");
+closeOverlayElement.addEventListener("click", toggleOverlay);
 
 // Fetch Cards and print them
 fetchCards(endpoint, boardElement);
