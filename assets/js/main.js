@@ -39,14 +39,12 @@ const toggleOverlay = () => {
 const showCard = (element, card) => {
 	const { _, title, date, url } = card;
 
-	const buttonElement = buildElement("button", "card-button");
-	buttonElement.addEventListener("click", () => {
+	const cardElement = buildElement("button", "card");
+	cardElement.addEventListener("click", () => {
 		const imgElement = document.querySelector("#overlay img");
 		imgElement.src = url;
 		toggleOverlay();
 	});
-
-	const cardElement = buildElement("div", "card");
 
 	const pinElement = buildElement("div", "pin");
 	const pinImage = buildElement("img", "", "./assets/img/pin.svg");
@@ -65,9 +63,7 @@ const showCard = (element, card) => {
 	cardFooterElement.appendChild(titleElement);
 	cardElement.appendChild(cardFooterElement);
 
-	buttonElement.appendChild(cardElement);
-	element.appendChild(buttonElement);
-	//element.appendChild(cardElement);
+	element.appendChild(cardElement);
 };
 
 /**
