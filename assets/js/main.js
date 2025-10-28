@@ -12,6 +12,7 @@
 const buildElement = (tagName, className, text) => {
 	const element = document.createElement(tagName);
 	element.className += className;
+
 	if (tagName === "img") {
 		element.src = text;
 	} else if (text) {
@@ -22,11 +23,14 @@ const buildElement = (tagName, className, text) => {
 
 /**
  * **toggleOverlay**
- * Toggles the class "d-none" on the overlay element.
+ * Receives an Element Id.
+ * Toggles the class "d-none" on the element specified
+ * by the Id.
+ * @param {text} id
  */
-const toggleOverlay = () => {
-	const overlayElement = document.getElementById("overlay");
-	overlayElement.classList.toggle("d-none");
+const toggleDisplayById = (id) => {
+	const element = document.getElementById(id);
+	element.classList.toggle("d-none");
 };
 
 /**
@@ -39,23 +43,27 @@ const toggleOverlay = () => {
 const showCard = (element, card) => {
 	const { _, title, date, url } = card;
 
+	// Build the main card
 	const cardElement = buildElement("button", "card");
 	cardElement.addEventListener("click", () => {
 		const imgElement = document.querySelector("#overlay img");
 		imgElement.src = url;
-		toggleOverlay();
+		toggleDisplayById("overlay");
 	});
 
+	// Build pin and append to card
 	const pinElement = buildElement("div", "pin");
 	const pinImage = buildElement("img", "", "./assets/img/pin.svg");
 	pinElement.appendChild(pinImage);
 	cardElement.appendChild(pinElement);
 
+	// Build image and append to card
 	const imageContainerElement = buildElement("div", "image-container");
 	const imageElement = buildElement("img", "", url);
 	imageContainerElement.appendChild(imageElement);
 	cardElement.appendChild(imageContainerElement);
 
+	// Build footer and append to card
 	const cardFooterElement = buildElement("div", "card-footer");
 	const dateElement = buildElement("div", "card-date", date);
 	cardFooterElement.appendChild(dateElement);
@@ -63,6 +71,7 @@ const showCard = (element, card) => {
 	cardFooterElement.appendChild(titleElement);
 	cardElement.appendChild(cardFooterElement);
 
+	// Append the main card to element
 	element.appendChild(cardElement);
 };
 
@@ -105,11 +114,14 @@ const fetchCards = async (endpoint, element) => {
 // URL Endpoint
 const endpoint = "https://lanciweb.github.io/demo/api/pictures/";
 
+// Event listener for the close button in the overlay
+const closeOverlayElement = document.querySelector("button.close-modal");
+closeOverlayElement.addEventListener("click", () =>
+	toggleDisplayById("overlay"),
+);
+
 // Select row element
 const boardElement = document.getElementById("board");
-
-const closeOverlayElement = document.querySelector("button.close-modal");
-closeOverlayElement.addEventListener("click", toggleOverlay);
 
 // Fetch Cards and print them
 fetchCards(endpoint, boardElement);
