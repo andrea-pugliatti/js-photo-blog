@@ -31,6 +31,7 @@ const showCard = (element, card) => {
 	const { _, title, date, url } = card;
 
 	const buttonElement = buildElement("button", "card-button");
+
 	const cardElement = buildElement("div", "card");
 
 	const pinElement = buildElement("div", "pin");

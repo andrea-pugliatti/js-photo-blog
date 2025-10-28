@@ -30,6 +30,10 @@ img {
 	margin: 0 auto;
 }
 
+.d-none {
+	display: none;
+}
+
 /* Header */
 .title {
 	text-align: center;
@@ -45,6 +49,7 @@ img {
 	padding: 2.5rem 0;
 	gap: 1.5rem;
 }
+
 .modal {
 	background-color: rgba(0 0 0 / 80%);
 	height: 100vh;
@@ -53,7 +58,8 @@ img {
 	left: 0;
 	position: absolute;
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 
 	.close-modal {
 		display: block;
@@ -63,7 +69,7 @@ img {
 	}
 
 	img {
-		margin-top: 2rem;
+		margin: 2rem auto;
 	}
 }
 
