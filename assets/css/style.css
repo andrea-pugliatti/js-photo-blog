@@ -47,6 +47,12 @@ img {
 }
 
 /* Card */
+.card-button {
+	border: 0;
+	font-family: inherit;
+	font-size: inherit;
+}
+
 .card {
 	background-color: white;
 	padding: 1rem;

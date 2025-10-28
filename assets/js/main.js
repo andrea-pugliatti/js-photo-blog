@@ -30,6 +30,7 @@ const buildElement = (tagName, className, text) => {
 const showCard = (element, card) => {
 	const { _, title, date, url } = card;
 
+	const buttonElement = buildElement("button", "card-button");
 	const cardElement = buildElement("div", "card");
 
 	const pinElement = buildElement("div", "pin");
@@ -51,7 +52,9 @@ const showCard = (element, card) => {
 	cardFooterElement.appendChild(titleElement);
 	cardElement.appendChild(cardFooterElement);
 
-	element.appendChild(cardElement);
+	buttonElement.appendChild(cardElement);
+	element.appendChild(buttonElement);
+	//element.appendChild(cardElement);
 };
 
 /**
